@@ -17,14 +17,6 @@ import org.springframework.web.cors.CorsConfiguration;
 @Configuration
 public class ProjectSecurityConfig {
 
-//	 @Override
-//	    public void addCorsMappings(CorsRegistry registry) {
-//	        registry.addMapping("/**")
-//	                .allowedOrigins("*")
-//	                .allowedMethods("GET", "POST", "PUT", "DELETE")
-//	                .allowedHeaders("*");
-//	    }
-
 	@Bean
 	SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
 
@@ -43,11 +35,11 @@ public class ProjectSecurityConfig {
 				.addFilterBefore(new JWTTokenValidatorFilter(), BasicAuthenticationFilter.class)
 				.authorizeHttpRequests((requests) -> requests
 						.requestMatchers("/admin/products/**", "/admin/orders/**", "/admin/control/**").hasRole("ADMIN")
-						.requestMatchers("/cart/**", "/users/**", "cart_items/**", "/orders/**", "/products/**",
+						.requestMatchers("/cart/**", "/users/**", "cart_items/**", "/orders/**", 
 								"/ratings/**")
 						.hasAnyRole("USER", "ADMIN").requestMatchers("/all").hasAnyRole("USER", "ADMIN")
 						.requestMatchers("/auth/signin").authenticated()
-						.requestMatchers("/notices", "/contact", "/auth/signup", "/swagger-ui*/**", "/v3/api-docs/**")
+						.requestMatchers("/notices","/products/**", "/","/contact", "/auth/signup", "/swagger-ui*/**", "/v3/api-docs/**")
 						.permitAll())
 				.formLogin(Customizer.withDefaults()).httpBasic(Customizer.withDefaults());
 		return http.build();
