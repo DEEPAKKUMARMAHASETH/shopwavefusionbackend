@@ -241,3 +241,7 @@ according to the domain add /cart/ "GET MAPPING"<br/>
 <p>For the all api's visit Swagger documentation</p>
 
 `http://localhost:8080/swagger-ui/index.html`
+
+<P>For Pagination and Sorting and Filtering Use this endpoint setValue as needed</P>
+
+`http://localhost:8080/products/all?category&colors&sizes&minPrice=1&maxPrice=1000&minDiscount&sort&stock&pageNumber=1&pageSize=2`
