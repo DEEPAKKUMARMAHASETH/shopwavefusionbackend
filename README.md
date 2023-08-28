@@ -78,3 +78,127 @@ async function getproduct() {
     Or you can change accordingly. if you don't want this then you can also delete this.
 </p>
 
+## API endpoint.
+
+<p>To add product into cart</p>
+
+`http://localhost:8080/cart/add` 
+
+according to the domain add /cart/add "PUT MAPPING"<br/>
+
+## Body
+
+```
+{
+    "productId":2,
+    "size":"M"
+}
+```
+
+<p>Cart</p>
+
+`http://localhost:8080/cart/` 
+
+according to the domain add /cart/ "GET MAPPING"<br/>
+
+<p>To add Product</p>
+
+`http://localhost:8080/admin/products/`
+
+## Body
+
+```
+{
+  "title": "Sample Product",
+  "description": "This is a sample product description.",
+  "price": 2999,
+  "discountedPrice": 2499,
+  "discountPersent": 20,
+  "quantity": 45,
+  "brand": "Example Brand",
+  "color": "Blue",
+  "size": [
+    {
+      "name": "S",
+      "quantity": 10
+    },
+    {
+      "name": "M",
+      "quantity": 20
+    },
+    {
+      "name": "L",
+      "quantity": 15
+    }
+  ],
+  "imageUrl": "https://example.com/image.jpg",
+  "topLavelCategory": "Clothing",
+  "secondLavelCategory": "T-Shirts",
+  "thirdLavelCategory": "Men's T-Shirts"
+}
+
+```
+
+<p>To add multiple Product</p>
+
+`http://localhost:8080/admin/products/creates`
+
+```
+[
+  {
+    "title": "Sample Product 1",
+    "description": "This is a sample product description.",
+    "price": 2999,
+    "discountedPrice": 2499,
+    "discountPersent": 20,
+    "quantity": 100,
+    "brand": "Example Brand",
+    "color": "Blue",
+    "size": [
+      {
+        "name": "S",
+        "quantity": 10
+      },
+      {
+        "name": "M",
+        "quantity": 20
+      }
+    ],
+    "imageUrl": "https://example.com/image1.jpg",
+    "topLavelCategory": "Clothing",
+    "secondLavelCategory": "T-Shirts",
+    "thirdLavelCategory": "Men's T-Shirts"
+  },
+  {
+    "title": "Sample Product 2",
+    "description": "Another sample product description.",
+    "price": 1999,
+    "discountedPrice": 1799,
+    "discountPersent": 10,
+    "quantity": 50,
+    "brand": "Another Brand",
+    "color": "Red",
+    "size": [
+      {
+        "name": "M",
+        "quantity": 15
+      },
+      {
+        "name": "L",
+        "quantity": 10
+      }
+    ],
+    "imageUrl": "https://example.com/image2.jpg",
+    "topLavelCategory": "Clothing",
+    "secondLavelCategory": "Shirts",
+    "thirdLavelCategory": "Men's Shirts"
+  }
+]
+```
+
+
+<p>To get Product</p>
+
+`http://localhost:8080/products/{product_id}`
+
+
