@@ -8,6 +8,10 @@
 ## Installation
 <p>Clone this repository..</p>
 
+## Database Schema
+
+![Schema](https://github.com/DEEPAKKUMARMAHASETH/shopwavefusionbackend/assets/71522419/6c5a4105-7c51-4005-b2c9-ea97426db5ea)
+
 ## For Login
 
 <p>Here is the sample Javascript code..</p>
