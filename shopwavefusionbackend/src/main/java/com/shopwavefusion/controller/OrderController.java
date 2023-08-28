@@ -18,6 +18,7 @@ import com.shopwavefusion.exception.UserException;
 import com.shopwavefusion.modal.Address;
 import com.shopwavefusion.modal.Order;
 import com.shopwavefusion.modal.User;
+import com.shopwavefusion.request.CreateOrderRequest;
 import com.shopwavefusion.service.OrderService;
 import com.shopwavefusion.service.UserService;
 
@@ -34,11 +35,11 @@ public class OrderController {
 	}
 	
 	@PostMapping("/")
-	public ResponseEntity<Order> createOrderHandler(@RequestBody Address spippingAddress,
+	public ResponseEntity<Order> createOrderHandler(@RequestBody CreateOrderRequest orderRequest,
 			@RequestHeader("Authorization")String jwt) throws UserException{
 		
 		User user=userService.findUserProfileByJwt(jwt);
-		Order order =orderService.createOrder(user, spippingAddress);
+		Order order =orderService.createOrder(user, orderRequest);
 		
 		return new ResponseEntity<Order>(order,HttpStatus.OK);
 		

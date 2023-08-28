@@ -1,11 +1,10 @@
 package com.shopwavefusion.service;
 
+import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -20,6 +19,7 @@ import com.shopwavefusion.repository.AddressRepository;
 import com.shopwavefusion.repository.OrderItemRepository;
 import com.shopwavefusion.repository.OrderRepository;
 import com.shopwavefusion.repository.UserRepository;
+import com.shopwavefusion.request.CreateOrderRequest;
 import com.shopwavefusion.user.domain.OrderStatus;
 import com.shopwavefusion.user.domain.PaymentStatus;
 
@@ -45,8 +45,15 @@ public class OrderServiceImplementation implements OrderService {
 	}
 
 	@Override
-	public Order createOrder(User user, Address shippAddress) {
-		
+	public Order createOrder(User user, CreateOrderRequest orderRequest) {
+		Address shippAddress = new Address();
+		shippAddress.setCity(orderRequest.getCity());
+		shippAddress.setFirstName(orderRequest.getFirstName());
+		shippAddress.setLastName(orderRequest.getLastName());
+		shippAddress.setMobile(orderRequest.getMobile());
+		shippAddress.setState(orderRequest.getState());
+		shippAddress.setStreetAddress(orderRequest.getStreetAddress());
+		shippAddress.setZipCode(orderRequest.getZipCode());
 		shippAddress.setUser(user);
 		Address address= addressRepository.save(shippAddress);
 		user.getAddresses().add(address);
@@ -83,8 +90,13 @@ public class OrderServiceImplementation implements OrderService {
 		createdOrder.setShippingAddress(address);
 		createdOrder.setOrderDate(LocalDateTime.now());
 		createdOrder.setOrderStatus(OrderStatus.PENDING);
-		createdOrder.getPaymentDetails().setStatus(PaymentStatus.PENDING);
+		createdOrder.getPaymentDetails().setStatus(PaymentStatus.COMPLETED);
+		createdOrder.getPaymentDetails().setCardholderName(orderRequest.getCardholderName());
+		createdOrder.getPaymentDetails().setCardNumber(orderRequest.getCardNumber());
+		createdOrder.getPaymentDetails().setPaymentMethod(orderRequest.getPaymentMethod());
+		createdOrder.getPaymentDetails().setPaymentId(generatePaymentId());
 		createdOrder.setCreatedAt(LocalDateTime.now());
+	
 		
 		Order savedOrder=orderRepository.save(createdOrder);
 		
@@ -159,10 +171,25 @@ public class OrderServiceImplementation implements OrderService {
 
 	@Override
 	public void deleteOrder(Long orderId) throws OrderException {
-		Order order =findOrderById(orderId);
-		
+				
 		orderRepository.deleteById(orderId);
 		
 	}
+	
+	
+
+    public static String generatePaymentId() {
+    	 String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    	 int LENGTH = 30;
+    	
+    	SecureRandom random = new SecureRandom();
+        StringBuilder sb = new StringBuilder(LENGTH);
+        for (int i = 0; i < LENGTH; i++) {
+            int randomIndex = random.nextInt(CHARACTERS.length());
+            char randomChar = CHARACTERS.charAt(randomIndex);
+            sb.append(randomChar);
+        }
+        return sb.toString();
+    }
 
 }

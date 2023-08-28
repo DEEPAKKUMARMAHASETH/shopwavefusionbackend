@@ -30,19 +30,17 @@ public class AdminInitializer implements CommandLineRunner {
             User adminUser = new User();
             adminUser.setEmail("admin@example.com");
             adminUser.setFirstName("Admin");
-            adminUser.setLastName("User");
-            adminUser.setPassword(passwordEncoder.encode("adminpassword"));
+            adminUser.setLastName("Admin");
+            adminUser.setMobile("1234567890");
+            adminUser.setPassword(passwordEncoder.encode("admin"));
             adminUser.setRole("ROLE_ADMIN");
             adminUser.setCreatedAt(LocalDateTime.now());
 
             User savedAdminUser = userRepository.save(adminUser);
 
-            // Check if the admin user already has a cart
-            if (cartService.findUserCart(savedAdminUser.getId()) == null) {
-                cartService.createCart(savedAdminUser);
-            } else {
-                throw new RuntimeException("Admin user already has a cart");
-            }
+          
+             cartService.createCart(savedAdminUser);
+           
         }
     }
 }

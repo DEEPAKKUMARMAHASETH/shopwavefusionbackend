@@ -48,7 +48,7 @@ public class ProjectSecurityConfig {
                 				,"/orders/**","/products/**","/ratings/**").hasAnyRole("USER", "ADMIN")
                 		.requestMatchers("/all").hasAnyRole("USER","ADMIN")
                         .requestMatchers("/auth/signin").authenticated()
-                        .requestMatchers("/notices","/contact","/auth/signup").permitAll())
+                        .requestMatchers("/notices","/contact","/auth/signup","/swagger-ui*/**","/v3/api-docs/**").permitAll())
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults());
         return http.build();

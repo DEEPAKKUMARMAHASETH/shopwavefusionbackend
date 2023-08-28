@@ -3,13 +3,13 @@ package com.shopwavefusion.service;
 import java.util.List;
 
 import com.shopwavefusion.exception.OrderException;
-import com.shopwavefusion.modal.Address;
 import com.shopwavefusion.modal.Order;
 import com.shopwavefusion.modal.User;
+import com.shopwavefusion.request.CreateOrderRequest;
 
 public interface OrderService {
 	
-	public Order createOrder(User user, Address shippingAdress);
+	public Order createOrder(User user, CreateOrderRequest orderRequest);
 	
 	public Order findOrderById(Long orderId) throws OrderException;
 	
