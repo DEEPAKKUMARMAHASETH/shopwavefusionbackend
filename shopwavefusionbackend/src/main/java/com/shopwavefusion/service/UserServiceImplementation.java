@@ -36,8 +36,7 @@ public class UserServiceImplementation implements UserService {
 	public User findUserProfileByJwt(String jwt) throws UserException {
 		System.out.println("user service");
 		String email=jwtTokenProvider.getEmailFromJwtToken(jwt);
-		
-		System.out.println("email "+email);
+
 		
 		User user=userRepository.findByEmail(email);
 		
@@ -46,7 +45,6 @@ public class UserServiceImplementation implements UserService {
 		if(user==null) {
 			throw new UserException("user not exist with email "+email);
 		}
-		System.out.println("email user"+user.getEmail());
 		return user;
 	}
 

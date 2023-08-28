@@ -43,7 +43,7 @@ public class ProjectSecurityConfig {
                 .addFilterAfter(new JWTTokenGeneratorFilter(), BasicAuthenticationFilter.class)
                 .addFilterBefore(new JWTTokenValidatorFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests((requests)->requests
-                		.requestMatchers("/admin/products/**","/admin/orders/**").hasRole("ADMIN")
+                		.requestMatchers("/admin/products/**","/admin/orders/**","/admin/control/**").hasRole("ADMIN")
                 		.requestMatchers("/cart/**","/users/**","cart_items/**"
                 				,"/orders/**","/products/**","/ratings/**").hasAnyRole("USER", "ADMIN")
                 		.requestMatchers("/all").hasAnyRole("USER","ADMIN")
