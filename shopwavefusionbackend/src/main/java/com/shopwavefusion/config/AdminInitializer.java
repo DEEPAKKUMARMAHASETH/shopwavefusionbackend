@@ -26,13 +26,13 @@ public class AdminInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         // Check if admin user already exists
-        if (userRepository.findByEmail("admin@example.com") == null) {
+        if (userRepository.findByEmail("deepakmahaseth@gmal.com") == null) {
             User adminUser = new User();
-            adminUser.setEmail("admin@example.com");
+            adminUser.setEmail("deepakmahaseth@gmal.com");
             adminUser.setFirstName("Admin");
             adminUser.setLastName("Admin");
             adminUser.setMobile("1234567890");
-            adminUser.setPassword(passwordEncoder.encode("admin"));
+            adminUser.setPassword(passwordEncoder.encode("deepakmahaseth@123"));
             adminUser.setRole("ROLE_ADMIN");
             adminUser.setCreatedAt(LocalDateTime.now());
 
