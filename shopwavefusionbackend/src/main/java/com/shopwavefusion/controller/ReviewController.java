@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shopwavefusion.exception.ProductException;
 import com.shopwavefusion.exception.UserException;
-import com.shopwavefusion.model.Review;
-import com.shopwavefusion.model.User;
+import com.shopwavefusion.modal.Review;
+import com.shopwavefusion.modal.User;
 import com.shopwavefusion.request.ReviewRequest;
 import com.shopwavefusion.service.ReviewService;
 import com.shopwavefusion.service.UserService;
 
 @RestController
-@RequestMapping("/api/reviews")
+@RequestMapping("/reviews")
 public class ReviewController {
 	
 	private ReviewService reviewService;

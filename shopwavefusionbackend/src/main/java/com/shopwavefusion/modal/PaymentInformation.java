@@ -1,15 +1,9 @@
-package com.shopwavefusion.model;
+package com.shopwavefusion.modal;
 
 import java.time.LocalDate;
 
 import jakarta.persistence.Column;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class PaymentInformation { 
 
 	    @Column(name = "cardholder_name")

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.shopwavefusion.config.JwtTokenProvider;
 import com.shopwavefusion.exception.UserException;
-import com.shopwavefusion.model.User;
+import com.shopwavefusion.modal.User;
 import com.shopwavefusion.repository.UserRepository;
 
 @Service
@@ -37,7 +37,7 @@ public class UserServiceImplementation implements UserService {
 		System.out.println("user service");
 		String email=jwtTokenProvider.getEmailFromJwtToken(jwt);
 		
-		System.out.println("email"+email);
+		System.out.println("email "+email);
 		
 		User user=userRepository.findByEmail(email);
 		

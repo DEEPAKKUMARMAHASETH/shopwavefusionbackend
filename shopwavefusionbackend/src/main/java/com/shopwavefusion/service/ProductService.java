@@ -5,8 +5,9 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 
 import com.shopwavefusion.exception.ProductException;
-import com.shopwavefusion.model.Product;
+import com.shopwavefusion.modal.Product;
 import com.shopwavefusion.request.CreateProductRequest;
+import com.shopwavefusion.user.domain.ProductSubCategory;
 
 public interface ProductService {
 	

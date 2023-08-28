@@ -2,18 +2,20 @@ package com.shopwavefusion.service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
 import com.shopwavefusion.exception.OrderException;
-import com.shopwavefusion.model.Address;
-import com.shopwavefusion.model.Cart;
-import com.shopwavefusion.model.CartItem;
-import com.shopwavefusion.model.Order;
-import com.shopwavefusion.model.OrderItem;
-import com.shopwavefusion.model.User;
+import com.shopwavefusion.modal.Address;
+import com.shopwavefusion.modal.Cart;
+import com.shopwavefusion.modal.CartItem;
+import com.shopwavefusion.modal.Order;
+import com.shopwavefusion.modal.OrderItem;
+import com.shopwavefusion.modal.User;
 import com.shopwavefusion.repository.AddressRepository;
 import com.shopwavefusion.repository.OrderItemRepository;
 import com.shopwavefusion.repository.OrderRepository;
@@ -28,15 +30,17 @@ public class OrderServiceImplementation implements OrderService {
 	private CartService cartService;
 	private AddressRepository addressRepository;
 	private UserRepository userRepository;
+	private OrderItemService orderItemService;
 	private OrderItemRepository orderItemRepository;
 	
 	public OrderServiceImplementation(OrderRepository orderRepository,CartService cartService,
 			AddressRepository addressRepository,UserRepository userRepository,
-			OrderItemRepository orderItemRepository) {
+			OrderItemService orderItemService,OrderItemRepository orderItemRepository) {
 		this.orderRepository=orderRepository;
 		this.cartService=cartService;
 		this.addressRepository=addressRepository;
 		this.userRepository=userRepository;
+		this.orderItemService=orderItemService;
 		this.orderItemRepository=orderItemRepository;
 	}
 
@@ -155,12 +159,10 @@ public class OrderServiceImplementation implements OrderService {
 
 	@Override
 	public void deleteOrder(Long orderId) throws OrderException {
-	    try {
-	        orderRepository.deleteById(orderId);
-	    } catch (Exception e) {
-	        throw new OrderException("An error occurred while deleting the order.");
-	    }
+		Order order =findOrderById(orderId);
+		
+		orderRepository.deleteById(orderId);
+		
 	}
-
 
 }

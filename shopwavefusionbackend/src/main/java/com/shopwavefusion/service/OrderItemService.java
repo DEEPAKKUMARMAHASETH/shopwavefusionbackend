@@ -1,6 +1,6 @@
 package com.shopwavefusion.service;
 
-import com.shopwavefusion.model.OrderItem;
+import com.shopwavefusion.modal.OrderItem;
 
 public interface OrderItemService {
 	

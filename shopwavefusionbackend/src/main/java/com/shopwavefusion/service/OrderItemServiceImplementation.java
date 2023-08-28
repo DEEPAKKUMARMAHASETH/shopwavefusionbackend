@@ -2,7 +2,7 @@ package com.shopwavefusion.service;
 
 import org.springframework.stereotype.Service;
 
-import com.shopwavefusion.model.OrderItem;
+import com.shopwavefusion.modal.OrderItem;
 import com.shopwavefusion.repository.OrderItemRepository;
 
 @Service

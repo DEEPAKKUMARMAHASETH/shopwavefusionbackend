@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shopwavefusion.exception.UserException;
-import com.shopwavefusion.model.User;
+import com.shopwavefusion.modal.User;
 import com.shopwavefusion.service.UserService;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/users")
 public class UserController {
 	
 	private UserService userService;

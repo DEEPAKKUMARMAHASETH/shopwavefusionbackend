@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shopwavefusion.exception.OrderException;
-import com.shopwavefusion.model.Order;
+import com.shopwavefusion.modal.Order;
 import com.shopwavefusion.response.ApiResponse;
 import com.shopwavefusion.service.OrderService;
 
 @RestController
-@RequestMapping("/api/admin/orders")
+@RequestMapping("/admin/orders")
 public class AdminOrderController {
 	
 	private OrderService orderService;

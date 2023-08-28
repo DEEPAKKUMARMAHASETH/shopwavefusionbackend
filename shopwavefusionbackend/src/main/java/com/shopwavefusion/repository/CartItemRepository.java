@@ -4,9 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.shopwavefusion.model.Cart;
-import com.shopwavefusion.model.CartItem;
-import com.shopwavefusion.model.Product;
+import com.shopwavefusion.modal.Cart;
+import com.shopwavefusion.modal.CartItem;
+import com.shopwavefusion.modal.Product;
 
 public interface CartItemRepository extends JpaRepository<CartItem, Long>{
 

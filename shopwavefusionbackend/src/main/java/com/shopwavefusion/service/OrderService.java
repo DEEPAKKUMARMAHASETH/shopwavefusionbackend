@@ -3,9 +3,9 @@ package com.shopwavefusion.service;
 import java.util.List;
 
 import com.shopwavefusion.exception.OrderException;
-import com.shopwavefusion.model.Address;
-import com.shopwavefusion.model.Order;
-import com.shopwavefusion.model.User;
+import com.shopwavefusion.modal.Address;
+import com.shopwavefusion.modal.Order;
+import com.shopwavefusion.modal.User;
 
 public interface OrderService {
 	

@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.shopwavefusion.exception.ProductException;
-import com.shopwavefusion.model.Product;
-import com.shopwavefusion.model.Review;
-import com.shopwavefusion.model.User;
+import com.shopwavefusion.modal.Product;
+import com.shopwavefusion.modal.Review;
+import com.shopwavefusion.modal.User;
 import com.shopwavefusion.repository.ProductRepository;
 import com.shopwavefusion.repository.ReviewRepository;
 import com.shopwavefusion.request.ReviewRequest;

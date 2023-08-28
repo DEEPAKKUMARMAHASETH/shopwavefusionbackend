@@ -1,7 +1,7 @@
 package com.shopwavefusion.service;
 
 import com.shopwavefusion.exception.UserException;
-import com.shopwavefusion.model.User;
+import com.shopwavefusion.modal.User;
 
 public interface UserService {
 	

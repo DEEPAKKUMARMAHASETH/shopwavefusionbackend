@@ -13,20 +13,23 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.shopwavefusion.exception.ProductException;
-import com.shopwavefusion.model.Category;
-import com.shopwavefusion.model.Product;
+import com.shopwavefusion.modal.Category;
+import com.shopwavefusion.modal.Product;
 import com.shopwavefusion.repository.CategoryRepository;
 import com.shopwavefusion.repository.ProductRepository;
 import com.shopwavefusion.request.CreateProductRequest;
+import com.shopwavefusion.user.domain.ProductSubCategory;
 
 @Service
 public class ProductServiceImplementation implements ProductService {
 	
 	private ProductRepository productRepository;
+	private UserService userService;
 	private CategoryRepository categoryRepository;
 	
-	public ProductServiceImplementation(ProductRepository productRepository,CategoryRepository categoryRepository) {
+	public ProductServiceImplementation(ProductRepository productRepository,UserService userService,CategoryRepository categoryRepository) {
 		this.productRepository=productRepository;
+		this.userService=userService;
 		this.categoryRepository=categoryRepository;
 	}
 	

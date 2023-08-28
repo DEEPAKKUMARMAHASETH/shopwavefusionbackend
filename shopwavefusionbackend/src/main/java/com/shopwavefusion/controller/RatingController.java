@@ -14,14 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shopwavefusion.exception.ProductException;
 import com.shopwavefusion.exception.UserException;
-import com.shopwavefusion.model.Rating;
-import com.shopwavefusion.model.User;
+import com.shopwavefusion.modal.Rating;
+import com.shopwavefusion.modal.Review;
+import com.shopwavefusion.modal.User;
 import com.shopwavefusion.request.RatingRequest;
 import com.shopwavefusion.service.RatingServices;
 import com.shopwavefusion.service.UserService;
 
 @RestController
-@RequestMapping("/api/ratings")
+@RequestMapping("/ratings")
 public class RatingController {
 	
 	private UserService userService;

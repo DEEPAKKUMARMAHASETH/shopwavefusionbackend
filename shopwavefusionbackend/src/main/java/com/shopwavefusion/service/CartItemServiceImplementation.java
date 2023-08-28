@@ -6,17 +6,19 @@ import org.springframework.stereotype.Service;
 
 import com.shopwavefusion.exception.CartItemException;
 import com.shopwavefusion.exception.UserException;
-import com.shopwavefusion.model.Cart;
-import com.shopwavefusion.model.CartItem;
-import com.shopwavefusion.model.Product;
-import com.shopwavefusion.model.User;
+import com.shopwavefusion.modal.Cart;
+import com.shopwavefusion.modal.CartItem;
+import com.shopwavefusion.modal.Product;
+import com.shopwavefusion.modal.User;
 import com.shopwavefusion.repository.CartItemRepository;
+import com.shopwavefusion.repository.CartRepository;
 
 @Service
 public class CartItemServiceImplementation implements CartItemService {
 	
 	private CartItemRepository cartItemRepository;
 	private UserService userService;
+	private CartRepository cartRepository;
 	
 	public CartItemServiceImplementation(CartItemRepository cartItemRepository,UserService userService) {
 		this.cartItemRepository=cartItemRepository;

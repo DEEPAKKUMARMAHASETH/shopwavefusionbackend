@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shopwavefusion.exception.CartItemException;
 import com.shopwavefusion.exception.UserException;
-import com.shopwavefusion.model.CartItem;
-import com.shopwavefusion.model.User;
+import com.shopwavefusion.modal.CartItem;
+import com.shopwavefusion.modal.User;
 import com.shopwavefusion.response.ApiResponse;
 import com.shopwavefusion.service.CartItemService;
 import com.shopwavefusion.service.UserService;
 
 @RestController
-@RequestMapping("/api/cart_items")
+@RequestMapping("/cart_items")
 public class CartItemController {
 
 	private CartItemService cartItemService;

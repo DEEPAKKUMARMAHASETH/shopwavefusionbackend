@@ -1,5 +1,4 @@
 package com.shopwavefusion.controller;
-
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -12,21 +11,51 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shopwavefusion.exception.ProductException;
-import com.shopwavefusion.model.Product;
+import com.shopwavefusion.modal.Product;
 import com.shopwavefusion.service.ProductService;
 
 @RestController
-@RequestMapping("/api")
-public class UserProductController {
-	
-	private ProductService productService;
-	
-	public UserProductController(ProductService productService) {
-		this.productService=productService;
-	}
-	
-	
-	@GetMapping("/products")
+@RequestMapping("/products")
+public class ProductController {
+
+    private final ProductService productService;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<Page<Product>> getAllProducts(
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) List<String> colors,
+            @RequestParam(required = false) List<String> sizes,
+            @RequestParam(required = false) Integer minPrice,
+            @RequestParam(required = false) Integer maxPrice,
+            @RequestParam(required = false) Integer minDiscount,
+            @RequestParam(required = false) String sort,
+            @RequestParam(required = false) String stock,
+            @RequestParam(defaultValue = "0") Integer pageNumber,
+            @RequestParam(defaultValue = "10") Integer pageSize
+    ) {
+        Page<Product> page =  productService.getAllProduct(
+                category,
+                colors,
+                sizes,
+                minPrice,
+                maxPrice,
+                minDiscount,
+                sort,
+                stock,
+                pageNumber,
+                pageSize
+        );
+        return new ResponseEntity<>(page, HttpStatus.OK);
+    }
+    
+    @GetMapping("/{productId}")
+    public ResponseEntity<Product> getProductById(@PathVariable Long productId) throws ProductException {
+        return new ResponseEntity<>(productService.findProductById(productId), HttpStatus.OK);
+    }
+    @GetMapping("/products")
 	public ResponseEntity<Page<Product>> findProductByCategoryHandler(@RequestParam String category,
 			@RequestParam List<String>color,@RequestParam List<String> size,@RequestParam Integer minPrice,
 			@RequestParam Integer maxPrice, @RequestParam Integer minDiscount, @RequestParam String sort, 
@@ -59,3 +88,4 @@ public class UserProductController {
 		
 	}
 }
+

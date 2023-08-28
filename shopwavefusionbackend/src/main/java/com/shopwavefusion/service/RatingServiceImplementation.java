@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.shopwavefusion.exception.ProductException;
-import com.shopwavefusion.model.Product;
-import com.shopwavefusion.model.Rating;
-import com.shopwavefusion.model.User;
+import com.shopwavefusion.modal.Product;
+import com.shopwavefusion.modal.Rating;
+import com.shopwavefusion.modal.User;
 import com.shopwavefusion.repository.RatingRepository;
 import com.shopwavefusion.request.RatingRequest;
 
@@ -42,7 +42,6 @@ public class RatingServiceImplementation implements RatingServices{
 		// TODO Auto-generated method stub
 		return ratingRepository.getAllProductsRating(productId);
 	}
-
 	
 	
 

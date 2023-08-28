@@ -2,9 +2,9 @@ package com.shopwavefusion.service;
 
 import com.shopwavefusion.exception.CartItemException;
 import com.shopwavefusion.exception.UserException;
-import com.shopwavefusion.model.Cart;
-import com.shopwavefusion.model.CartItem;
-import com.shopwavefusion.model.Product;
+import com.shopwavefusion.modal.Cart;
+import com.shopwavefusion.modal.CartItem;
+import com.shopwavefusion.modal.Product;
 
 public interface CartItemService {
 	

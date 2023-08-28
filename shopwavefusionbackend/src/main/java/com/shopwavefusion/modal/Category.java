@@ -1,4 +1,4 @@
-package com.shopwavefusion.model;
+package com.shopwavefusion.modal;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -10,15 +10,9 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "categories")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Category {
     
     @Id
@@ -35,7 +29,50 @@ public class Category {
 
     private int level;
     
-  
+    
+	public Category() {
+		// TODO Auto-generated constructor stub
+	}
+	
+
+	
+
+
+	public int getLevel() {
+		return level;
+	}
+
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Category getParentCategory() {
+		return parentCategory;
+	}
+
+	public void setParentCategory(Category parentCategory) {
+		this.parentCategory = parentCategory;
+	}
+
+	
     
 
 }

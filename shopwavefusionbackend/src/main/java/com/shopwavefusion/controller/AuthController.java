@@ -1,13 +1,14 @@
 package com.shopwavefusion.controller;
+import java.time.LocalDateTime;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,12 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shopwavefusion.config.JwtTokenProvider;
 import com.shopwavefusion.exception.UserException;
-import com.shopwavefusion.model.User;
+import com.shopwavefusion.modal.User;
 import com.shopwavefusion.repository.UserRepository;
-import com.shopwavefusion.request.LoginRequest;
-import com.shopwavefusion.response.AuthResponse;
 import com.shopwavefusion.service.CartService;
-import com.shopwavefusion.service.CustomUserDetails;
 
 import jakarta.validation.Valid;
 
@@ -30,20 +28,24 @@ public class AuthController {
 
 	private UserRepository userRepository;
 	private PasswordEncoder passwordEncoder;
-	private JwtTokenProvider jwtTokenProvider;
-	private CustomUserDetails customUserDetails;
 	private CartService cartService;
 	
-	public AuthController(UserRepository userRepository,PasswordEncoder passwordEncoder,JwtTokenProvider jwtTokenProvider,CustomUserDetails customUserDetails,CartService cartService) {
-		this.userRepository=userRepository;
-		this.passwordEncoder=passwordEncoder;
-		this.jwtTokenProvider=jwtTokenProvider;
-		this.customUserDetails=customUserDetails;
-		this.cartService=cartService;
+
+	
+	public AuthController(UserRepository userRepository, PasswordEncoder passwordEncoder, CartService cartService) {
+		super();
+		this.userRepository = userRepository;
+		this.passwordEncoder = passwordEncoder;
+		this.cartService = cartService;
+	}
+
+	@PostMapping("/post")
+	public String postget() {
+		return "post method....";
 	}
 	
 	@PostMapping("/signup")
-	public ResponseEntity<AuthResponse> createUserHandler(@Valid @RequestBody User user) throws UserException{
+	public ResponseEntity<User> createUserHandler(@Valid @RequestBody User user) throws UserException{
 		
 		  	String email = user.getEmail();
 	        String password = user.getPassword();
@@ -54,7 +56,7 @@ public class AuthController {
 
 	        // Check if user with the given email already exists
 	        if (isEmailExist!=null) {
-	        // System.out.println("--------- exist "+isEmailExist).getEmail());
+	        // 
 	        	
 	            throw new UserException("Email Is Already Used With Another Account");
 	        }
@@ -65,6 +67,9 @@ public class AuthController {
 			createdUser.setFirstName(firstName);
 			createdUser.setLastName(lastName);
 	        createdUser.setPassword(passwordEncoder.encode(password));
+	        createdUser.setRole("ROLE_USER");
+	        createdUser.setCreatedAt(LocalDateTime.now());
+	        createdUser.setMobile(user.getMobile());
 	        
 	        
 	        
@@ -74,48 +79,18 @@ public class AuthController {
 
 	        Authentication authentication = new UsernamePasswordAuthenticationToken(email, password);
 	        SecurityContextHolder.getContext().setAuthentication(authentication);
-	        
-	        String token = jwtTokenProvider.generateToken(authentication);
 
-	        AuthResponse authResponse= new AuthResponse(token,true);
 			
-	        return new ResponseEntity<AuthResponse>(authResponse,HttpStatus.OK);
+	        return new ResponseEntity<>(savedUser,HttpStatus.OK);
 		
 	}
 	
-	@PostMapping("/signin")
-    public ResponseEntity<AuthResponse> signin(@RequestBody LoginRequest loginRequest) {
-        String username = loginRequest.getEmail();
-        String password = loginRequest.getPassword();
-        
-        System.out.println(username +" ----- "+password);
-        
-        Authentication authentication = authenticate(username, password);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        
-        
-        String token = jwtTokenProvider.generateToken(authentication);
-        AuthResponse authResponse= new AuthResponse();
-		
-		authResponse.setStatus(true);
-		authResponse.setJwt(token);
-		
-        return new ResponseEntity<AuthResponse>(authResponse,HttpStatus.OK);
+	@GetMapping("/signin")
+    public ResponseEntity<User> signin(Authentication authentication) {
+		String email = authentication.getName();
+		User user = userRepository.findByEmail(email);
+        return new ResponseEntity<>(user,HttpStatus.OK);
     }
 	
-	private Authentication authenticate(String username, String password) {
-        UserDetails userDetails = customUserDetails.loadUserByUsername(username);
-        
-        System.out.println("sign in userDetails - "+userDetails);
-        
-        if (userDetails == null) {
-        	System.out.println("sign in userDetails - null " + userDetails);
-            throw new BadCredentialsException("Invalid username or password");
-        }
-        if (!passwordEncoder.matches(password, userDetails.getPassword())) {
-        	System.out.println("sign in userDetails - password not match " + userDetails);
-            throw new BadCredentialsException("Invalid username or password");
-        }
-        return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-    }
+	
 }

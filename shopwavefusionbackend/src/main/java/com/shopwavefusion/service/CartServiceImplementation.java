@@ -3,10 +3,10 @@ package com.shopwavefusion.service;
 import org.springframework.stereotype.Service;
 
 import com.shopwavefusion.exception.ProductException;
-import com.shopwavefusion.model.Cart;
-import com.shopwavefusion.model.CartItem;
-import com.shopwavefusion.model.Product;
-import com.shopwavefusion.model.User;
+import com.shopwavefusion.modal.Cart;
+import com.shopwavefusion.modal.CartItem;
+import com.shopwavefusion.modal.Product;
+import com.shopwavefusion.modal.User;
 import com.shopwavefusion.repository.CartRepository;
 import com.shopwavefusion.request.AddItemRequest;
 
@@ -56,12 +56,12 @@ public class CartServiceImplementation implements CartService{
 	}
 
 	@Override
-	public String addCartItem(Long userId, AddItemRequest req) throws ProductException {
+	public CartItem addCartItem(Long userId, AddItemRequest req) throws ProductException {
 		Cart cart=cartRepository.findByUserId(userId);
 		Product product=productService.findProductById(req.getProductId());
 		
 		CartItem isPresent=cartItemService.isCartItemExist(cart, product, req.getSize(),userId);
-		
+		CartItem createdCartItem=null;
 		if(isPresent == null) {
 			CartItem cartItem = new CartItem();
 			cartItem.setProduct(product);
@@ -74,12 +74,12 @@ public class CartServiceImplementation implements CartService{
 			cartItem.setPrice(price);
 			cartItem.setSize(req.getSize());
 			
-			CartItem createdCartItem=cartItemService.createCartItem(cartItem);
+			 createdCartItem=cartItemService.createCartItem(cartItem);
 			cart.getCartItems().add(createdCartItem);
 		}
 		
 		
-		return "Item Add To Cart";
+		return createdCartItem;
 	}
 
 }
