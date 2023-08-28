@@ -40,6 +40,23 @@ async function fetchUserDetails() {
      }
     }
 ```
+## To Register a user
+
+`http://localhost:8080/auth/signup`
+
+## Body
+
+```
+{
+    "firstName":"user",
+    "lastName":"user",
+    "email":"user2@gmail.com",
+    "password":"1234",
+    "mobile":"1234567890"
+}
+
+```
+
 <p>For other API request send the "Authorization Token" along with header</p>
 
 ## here is the sample code
