@@ -23,6 +23,12 @@ public class ProductController {
         this.productService = productService;
     }
 
+    @GetMapping("")
+    public ResponseEntity<List<Product>> getAllListOfProduct(){
+    	 List<Product> list = productService.getAllProducts();
+    	 return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+    
     @GetMapping("/all")
     public ResponseEntity<Page<Product>> getAllProducts(
             @RequestParam(required = false) String category,
