@@ -5,6 +5,18 @@
 ## Introduction
 <p>This backend application can be integrated with any frontend UI application. You just need to follow few Steps.</p>
 
+## Features
+- User and Admin registration and login with JWT authentication
+- Password encryption using BCrypt
+- Role-based authorization with Spring Security
+- User Module
+- Admin Module
+## Tech Stack
+- Java
+- Spring
+- Spring Boot
+- Spring Security
+- MySql
 ## Installation
 <p>Clone this repository..</p>
 
