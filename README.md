@@ -72,4 +72,9 @@ async function getproduct() {
   }
 }
 ```
+## For Admin Login 
+<p>
+    There is a predefined admin credentials (email: "admin@example.com", password: "admin") in the config package with the class name AdminInitializer If you want you can use this admin as super admin also you can avoid this admin.
+    Or you can change accordingly. if you don't want this then you can also delete this.
+</p>
 
