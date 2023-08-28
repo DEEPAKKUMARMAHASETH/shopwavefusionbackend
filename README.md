@@ -218,4 +218,26 @@ according to the domain add /cart/ "GET MAPPING"<br/>
 
 `http://localhost:8080/products/{product_id}`
 
+<p>To place a order</p>
 
+```
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "streetAddress": "123 Main St",
+  "city": "Example City",
+  "state": "Example State",
+  "zipCode": "12345",
+  "mobile": "123-456-7890",
+  "paymentMethod": "CREDIT_CARD",
+  "status": "PENDING",
+  "paymentId": "123456789",
+  "cardholderName": "John Doe",
+  "cardNumber": "**** **** **** 1234"
+}
+```
+<p>Only pass this object</p>
+
+<p>For the all api's visit Swagger documentation</p>
+
+`http://localhost:8080/swagger-ui/index.html`
