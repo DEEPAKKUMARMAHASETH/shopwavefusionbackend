@@ -165,9 +165,9 @@ according to the domain add /cart/ "GET MAPPING"<br/>
     }
   ],
   "imageUrl": "https://example.com/image.jpg",
-  "topLavelCategory": "Clothing",
-  "secondLavelCategory": "T-Shirts",
-  "thirdLavelCategory": "Men's T-Shirts"
+  "topLevelCategory": "Clothing",
+  "secondLevelCategory": "T-Shirts",
+  "thirdLevelCategory": "Men's T-Shirts"
 }
 
 ```
