@@ -31,7 +31,10 @@ public interface ProductService {
 //	public List<Product> getAllProduct(List<String>colors,List<String>sizes,int minPrice, int maxPrice,int minDiscount, String category, String sort,int pageNumber, int pageSize);
 	public Page<Product> getAllProduct(String category, List<String>colors, List<String> sizes, Integer minPrice, Integer maxPrice, Integer minDiscount,String sort, String stock, Integer pageNumber, Integer pageSize);
 	
-	
+	Page<Product> getProductsSortedByDiscountedPrice(String sortDirection, int page, int pageSize);
+	Page<Product> getProductsByCategory(String categoryName, int page, int pageSize);
+	Page<Product> getProductsByCategoryAndPriceRange(
+            String categoryName, Integer minPrice, Integer maxPrice, int page, int pageSize);
 	
 	
 

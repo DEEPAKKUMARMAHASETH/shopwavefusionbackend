@@ -37,4 +37,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 			@Param("minDiscount") Integer minDiscount,
 			@Param("sort") String sort
 			);
+	Page<Product> findAllByOrderByDiscountedPriceAsc(Pageable pageable); 
+    Page<Product> findAllByOrderByDiscountedPriceDesc(Pageable pageable);
+    Page<Product> findByCategoryNameIgnoreCase(String categoryName, Pageable pageable);
+    Page<Product> findByCategoryNameIgnoreCaseAndDiscountedPriceBetween(
+            String categoryName, Integer minPrice, Integer maxPrice, Pageable pageable);
 }

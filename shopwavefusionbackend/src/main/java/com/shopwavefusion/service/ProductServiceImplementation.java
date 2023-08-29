@@ -35,8 +35,30 @@ public class ProductServiceImplementation implements ProductService {
 		this.userService=userService;
 		this.categoryRepository=categoryRepository;
 	}
-	
+	@Override
+    public Page<Product> getProductsSortedByDiscountedPrice(String sortDirection, int page, int pageSize) {
+        Pageable pageable = PageRequest.of(page, pageSize);
 
+        if ("asc".equalsIgnoreCase(sortDirection)) {
+            return productRepository.findAllByOrderByDiscountedPriceAsc(pageable);
+        } else if ("desc".equalsIgnoreCase(sortDirection)) {
+            return productRepository.findAllByOrderByDiscountedPriceDesc(pageable);
+        } else {
+            return productRepository.findAllByOrderByDiscountedPriceAsc(pageable);
+        }
+    }
+	 @Override
+	    public Page<Product> getProductsByCategory(String categoryName, int page, int pageSize) {
+	        Pageable pageable = PageRequest.of(page, pageSize);
+	        return productRepository.findByCategoryNameIgnoreCase(categoryName, pageable);
+	    }
+	 @Override
+	    public Page<Product> getProductsByCategoryAndPriceRange(
+	            String categoryName, Integer minPrice, Integer maxPrice, int page, int pageSize) {
+	        Pageable pageable = PageRequest.of(page, pageSize);
+	        return productRepository.findByCategoryNameIgnoreCaseAndDiscountedPriceBetween(
+	                categoryName, minPrice, maxPrice, pageable);
+	    }
 	@Override
 	@Transactional
 	public Product createProduct(CreateProductRequest req) throws SQLException {

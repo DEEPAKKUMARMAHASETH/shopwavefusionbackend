@@ -23,12 +23,38 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("")
+    @GetMapping
     public ResponseEntity<List<Product>> getAllListOfProduct(){
     	 List<Product> list = productService.getAllProducts();
     	 return new ResponseEntity<>(list, HttpStatus.OK);
     }
-    
+    @GetMapping("/sorted")
+    public Page<Product> getProductsSortedByDiscountedPrice(
+            @RequestParam(defaultValue = "asc") String sort,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int pageSize) {
+
+        return productService.getProductsSortedByDiscountedPrice(sort, page, pageSize);
+    }
+    @GetMapping("/by-category")
+    public Page<Product> getProductsByCategory(
+            @RequestParam String categoryName,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int pageSize) {
+
+        return productService.getProductsByCategory(categoryName, page, pageSize);
+    }
+    @GetMapping("/by-category-and-price")
+    public Page<Product> getProductsByCategoryAndPriceRange(
+            @RequestParam String categoryName,
+            @RequestParam(required = false) Integer minPrice,
+            @RequestParam(required = false) Integer maxPrice,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int pageSize) {
+
+        return productService.getProductsByCategoryAndPriceRange(
+                categoryName, minPrice, maxPrice, page, pageSize);
+    }
     @GetMapping("/all")
     public ResponseEntity<Page<Product>> getAllProducts(
             @RequestParam(required = false) String category,
