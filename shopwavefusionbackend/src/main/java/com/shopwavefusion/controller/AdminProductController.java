@@ -1,5 +1,7 @@
 package com.shopwavefusion.controller;
 
+import java.sql.SQLException;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,8 +28,7 @@ public class AdminProductController {
 		this.productService = productService;
 	}
 	@PostMapping("/")
-	public ResponseEntity<Product> createProductHandler(@RequestBody CreateProductRequest req) throws ProductException{
-		
+	public ResponseEntity<Product> createProductHandler(@RequestBody CreateProductRequest req) throws ProductException, SQLException{
 		Product createdProduct = productService.createProduct(req);
 		
 		return new ResponseEntity<Product>(createdProduct,HttpStatus.ACCEPTED);
@@ -56,7 +57,7 @@ public class AdminProductController {
 	}
 	
 	@PostMapping("/creates")
-	public ResponseEntity<ApiResponse> createMultipleProduct(@RequestBody CreateProductRequest[] reqs) throws ProductException{
+	public ResponseEntity<ApiResponse> createMultipleProduct(@RequestBody CreateProductRequest[] reqs) throws ProductException, SQLException{
 		
 		for(CreateProductRequest product:reqs) {
 			productService.createProduct(product);

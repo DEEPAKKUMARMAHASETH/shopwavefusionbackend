@@ -1,6 +1,7 @@
 package com.shopwavefusion.service;
 
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -18,11 +19,13 @@ import com.shopwavefusion.modal.Product;
 import com.shopwavefusion.repository.CategoryRepository;
 import com.shopwavefusion.repository.ProductRepository;
 import com.shopwavefusion.request.CreateProductRequest;
-import com.shopwavefusion.user.domain.ProductSubCategory;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class ProductServiceImplementation implements ProductService {
-	
+
+
 	private ProductRepository productRepository;
 	private UserService userService;
 	private CategoryRepository categoryRepository;
@@ -35,36 +38,40 @@ public class ProductServiceImplementation implements ProductService {
 	
 
 	@Override
-	public Product createProduct(CreateProductRequest req) {
-		
-		Category topLevel=categoryRepository.findByName(req.getTopLavelCategory());
+	@Transactional
+	public Product createProduct(CreateProductRequest req) throws SQLException {
+		System.out.println("reached here");
+		Category topLevel=categoryRepository.findByName(req.getTopLevelCategory());
 		
 		if(topLevel==null) {
 			
 			Category topLavelCategory=new Category();
-			topLavelCategory.setName(req.getTopLavelCategory());
+			topLavelCategory.setName(req.getTopLevelCategory());
 			topLavelCategory.setLevel(1);
-			
+			System.out.println("topLeve category creating");
 			topLevel= categoryRepository.save(topLavelCategory);
+			
+			System.out.println("topLeve category created");
 		}
 		
 		Category secondLevel=categoryRepository.
-				findByNameAndParant(req.getSecondLavelCategory(),topLevel.getName());
+				findByNameAndParant(req.getSecondLevelCategory(),topLevel.getName());
 		if(secondLevel==null) {
 			
 			Category secondLavelCategory=new Category();
-			secondLavelCategory.setName(req.getSecondLavelCategory());
+			secondLavelCategory.setName(req.getSecondLevelCategory());
 			secondLavelCategory.setParentCategory(topLevel);
 			secondLavelCategory.setLevel(2);
 			
 			secondLevel= categoryRepository.save(secondLavelCategory);
+			System.out.println("secondLevel category created");
 		}
 
-		Category thirdLevel=categoryRepository.findByNameAndParant(req.getThirdLavelCategory(),secondLevel.getName());
+		Category thirdLevel=categoryRepository.findByNameAndParant(req.getThirdLevelCategory(),secondLevel.getName());
 		if(thirdLevel==null) {
 			
 			Category thirdLavelCategory=new Category();
-			thirdLavelCategory.setName(req.getThirdLavelCategory());
+			thirdLavelCategory.setName(req.getThirdLevelCategory());
 			thirdLavelCategory.setParentCategory(secondLevel);
 			thirdLavelCategory.setLevel(3);
 			

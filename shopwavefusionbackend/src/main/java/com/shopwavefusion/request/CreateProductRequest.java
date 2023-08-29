@@ -3,9 +3,7 @@ package com.shopwavefusion.request;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.shopwavefusion.modal.Category;
 import com.shopwavefusion.modal.Size;
-import com.shopwavefusion.user.domain.ProductSize;
 
 
 public class CreateProductRequest {
@@ -30,9 +28,9 @@ public class CreateProductRequest {
 
     private String imageUrl;
 
-    private String topLavelCategory;
-    private String secondLavelCategory;
-    private String thirdLavelCategory;
+    private String topLevelCategory;
+    private String secondLevelCategory;
+    private String thirdLevelCategory;
 
 	public Set<Size> getSize() {
 		return size;
@@ -110,29 +108,23 @@ public class CreateProductRequest {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
-
-	public String getTopLavelCategory() {
-		return topLavelCategory;
+	public String getTopLevelCategory() {
+		return topLevelCategory;
 	}
-
-	public void setTopLavelCategory(String topLavelCategory) {
-		this.topLavelCategory = topLavelCategory;
+	public void setTopLevelCategory(String topLevelCategory) {
+		this.topLevelCategory = topLevelCategory;
 	}
-
-	public String getSecondLavelCategory() {
-		return secondLavelCategory;
+	public String getSecondLevelCategory() {
+		return secondLevelCategory;
 	}
-
-	public void setSecondLavelCategory(String secondLavelCategory) {
-		this.secondLavelCategory = secondLavelCategory;
+	public void setSecondLevelCategory(String secondLevelCategory) {
+		this.secondLevelCategory = secondLevelCategory;
 	}
-
-	public String getThirdLavelCategory() {
-		return thirdLavelCategory;
+	public String getThirdLevelCategory() {
+		return thirdLevelCategory;
 	}
-
-	public void setThirdLavelCategory(String thirdLavelCategory) {
-		this.thirdLavelCategory = thirdLavelCategory;
+	public void setThirdLevelCategory(String thirdLevelCategory) {
+		this.thirdLevelCategory = thirdLevelCategory;
 	}
 
 	

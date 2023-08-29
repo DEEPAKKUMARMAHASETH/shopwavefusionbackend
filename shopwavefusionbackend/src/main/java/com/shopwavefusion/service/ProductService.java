@@ -1,5 +1,6 @@
 package com.shopwavefusion.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -12,7 +13,7 @@ import com.shopwavefusion.user.domain.ProductSubCategory;
 public interface ProductService {
 	
 	// only for admin
-	public Product createProduct(CreateProductRequest req) throws ProductException;
+	public Product createProduct(CreateProductRequest req) throws ProductException, SQLException;
 	
 	public String deleteProduct(Long productId) throws ProductException;
 	
