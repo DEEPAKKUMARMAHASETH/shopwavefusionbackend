@@ -5,6 +5,18 @@
 ## Introduction
 <p>This backend application can be integrated with any frontend UI application. You just need to follow few Steps.</p>
 
+## Features
+- User and Admin registration and login with JWT authentication
+- Password encryption using BCrypt
+- Role-based authorization with Spring Security
+- User Module
+- Admin Module
+## Tech Stack
+- Java
+- Spring
+- Spring Boot
+- Spring Security
+- MySql
 ## Installation
 <p>Clone this repository..</p>
 
@@ -25,7 +37,7 @@ async function fetchUserDetails() {
     
     
       try {
-       const response = await fetch('http://localhost:8080/auth/signin', {
+       const response = await fetch('https://shopwavefusion-production.up.railway.app/auth/signin', {
         method: 'GET',
         headers: {
           'Authorization': authHeader
@@ -46,7 +58,7 @@ async function fetchUserDetails() {
 ```
 ## To Register a user
 
-`http://localhost:8080/auth/signup`
+`https://shopwavefusion-production.up.railway.app/auth/signup`
 
 ## Body
 
@@ -80,7 +92,7 @@ async function getproduct() {
   };
 
   try {
-    const response = await fetch("http://localhost:8080/all", requestOptions);
+    const response = await fetch("https://shopwavefusion-production.up.railway.app/all", requestOptions);
     
     if (response.ok) {
       const data = await response.json();
@@ -103,7 +115,7 @@ async function getproduct() {
 
 <p>To add product into cart</p>
 
-`http://localhost:8080/cart/add` 
+`https://shopwavefusion-production.up.railway.app/cart/add` 
 
 according to the domain add /cart/add "PUT MAPPING"<br/>
 
@@ -118,13 +130,13 @@ according to the domain add /cart/add "PUT MAPPING"<br/>
 
 <p>Cart</p>
 
-`http://localhost:8080/cart/` 
+`http://localhost:8080](https://shopwavefusion-production.up.railway.app/cart/` 
 
 according to the domain add /cart/ "GET MAPPING"<br/>
 
 <p>To add Product</p>
 
-`http://localhost:8080/admin/products/`
+`https://shopwavefusion-production.up.railway.app/products/`
 
 ## Body
 
@@ -153,16 +165,16 @@ according to the domain add /cart/ "GET MAPPING"<br/>
     }
   ],
   "imageUrl": "https://example.com/image.jpg",
-  "topLavelCategory": "Clothing",
-  "secondLavelCategory": "T-Shirts",
-  "thirdLavelCategory": "Men's T-Shirts"
+  "topLevelCategory": "Clothing",
+  "secondLevelCategory": "T-Shirts",
+  "thirdLevelCategory": "Men's T-Shirts"
 }
 
 ```
 
 <p>To add multiple Product</p>
 
-`http://localhost:8080/admin/products/creates`
+`https://shopwavefusion-production.up.railway.app/admin/products/creates`
 
 ```
 [
@@ -220,7 +232,7 @@ according to the domain add /cart/ "GET MAPPING"<br/>
 
 <p>To get Product</p>
 
-`http://localhost:8080/products/{product_id}`
+`https://shopwavefusion-production.up.railway.app/{product_id}`
 
 <p>To place a order</p>
 
@@ -244,8 +256,8 @@ according to the domain add /cart/ "GET MAPPING"<br/>
 
 <p>For the all api's visit Swagger documentation</p>
 
-`http://localhost:8080/swagger-ui/index.html`
+`https://shopwavefusion-production.up.railway.app/swagger-ui/index.html`
 
 <P>For Pagination and Sorting and Filtering Use this endpoint setValue as needed</P>
 
-`http://localhost:8080/products/all?category&colors&sizes&minPrice=1&maxPrice=1000&minDiscount&sort&stock&pageNumber=1&pageSize=2`
+`https://shopwavefusion-production.up.railway.app/products/all?category&colors&sizes&minPrice=1&maxPrice=1000&minDiscount&sort&stock&pageNumber=1&pageSize=2`
